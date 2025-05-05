@@ -10,7 +10,7 @@ function getHumanChoice() {
     return userInput.toLowerCase();
 }
 
-function playRound(humanChoice, computerChoice, humanScore, computerScore) {
+function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice){
         console.log("It's a tie! Both picked " + humanChoice)
         return "tie";
@@ -27,12 +27,31 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore) {
 
 }
 
+function handleButtonClilck(action, computerChoice) {
+    console.log(`Button clicked with action: ${action} and computer choice is ${computerChoice}`);
+}
+
 function playGame() {
+    const buttons = document.querySelectorAll(".rps-button");
+    const computerChoice = getComputerChoice();
+
+    buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            const value = event.target.getAttribute("data-value");
+            handleButtonClilck(value, computerChoice);
+    })
+});
+}
+
+playGame();
+
+
+/* function playGame() {
 
     let humanScore = 0;
     let computerScore = 0;
 
-    for (i=1; i<6; i++){
+    /for (i=1; i<6; i++){
         const humanSelection = getHumanChoice()
         const computerSelection = getComputerChoice()
     
@@ -57,4 +76,4 @@ function playGame() {
     }
 }
 
-playGame()
+playGame() */
