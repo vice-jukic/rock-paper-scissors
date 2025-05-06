@@ -57,45 +57,6 @@ function buttonPressed() {
 }
 function playGame() {
     buttonPressed();
-/* 
-    let score = "";
-    score = playRound(value, computerChoice);
-
-    console.log(`${score} - winner`);
-    scoreCounter(score);
-    console.log(`${score} - score outside of forEach`) */
 }
 
 playGame();
-
-/* function playGame() {
-
-    let humanScore = 0;
-    let computerScore = 0;
-
-    /for (i=1; i<6; i++){
-        const humanSelection = getHumanChoice()
-        const computerSelection = getComputerChoice()
-    
-        const result = playRound(humanSelection, computerSelection, humanScore, computerScore)
-
-        if (result === "human") {
-            humanScore++;
-        } else if (result === "computer") {
-            computerScore++;
-        }
-
-        console.log(`Scores after round ${i}: You - ${humanScore} | Computer - ${computerScore}`);
-    }
-
-    console.log("\nFinal Score:");
-    if (humanScore > computerScore) {
-        console.log("You win the game!")
-    } else if (computerScore > humanScore) {
-        console.log("Computer wins the game!")
-    } else {
-        console.log("The game is a tie!")
-    }
-}
-
-playGame() */
