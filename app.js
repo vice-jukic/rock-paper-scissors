@@ -5,46 +5,68 @@ function getComputerChoice() {
     return element;
 }
 
-function getHumanChoice() {
-    let userInput = prompt("Rock, paper, scissors?");
-    return userInput.toLowerCase();
-}
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
+    let roundWinner = "";
+    console.log(humanChoice, computerChoice);
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice){
-        console.log("It's a tie! Both picked " + humanChoice)
-        return "tie";
-    } else if (humanChoice === "rock" && computerChoice === "scissors") {
-        return "human";
-    } else if (humanChoice === "scissors" && computerChoice === "paper") {
-        return "human";
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-        return "human";
-    } else {
-        console.log(`You lose! ${computerChoice.toUpperCase()} beats ${humanChoice.toUpperCase()}`)
-        return "computer";
+    if (humanChoice === computerChoice) {
+        roundWinner = "tie";
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "paper" && computerChoice === "rock")
+    ) {
+        roundWinner = "human";
+    } else if (
+        (computerChoice === "rock" && humanChoice === "scissors") ||
+        (computerChoice === "scissors" && humanChoice === "paper") ||
+        (computerChoice === "paper" && humanChoice === "rock")
+    ) {
+        roundWinner = "computer";
     }
 
+    scoreCounter(roundWinner);
 }
 
-function handleButtonClilck(action, computerChoice) {
-    console.log(`Button clicked with action: ${action} and computer choice is ${computerChoice}`);
+function scoreCounter(value) {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    if (value === "human") {
+        humanScore++
+    } else if (value === "computer") {
+        computerScore++;
+    } else if (value === "tie") {
+        humanScore = humanScore;
+        computerScore = computerScore;
+    }
+
+    const msg = document.querySelector(".results");
+    msg.textContent = `HUMAN SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore}`;
 }
 
-function playGame() {
+function buttonPressed() {
     const buttons = document.querySelectorAll(".rps-button");
-    const computerChoice = getComputerChoice();
-
     buttons.forEach(button => {
         button.addEventListener("click", (event) => {
             const value = event.target.getAttribute("data-value");
-            handleButtonClilck(value, computerChoice);
-    })
-});
+            playRound(value);
+        })
+    });
+}
+function playGame() {
+    buttonPressed();
+/* 
+    let score = "";
+    score = playRound(value, computerChoice);
+
+    console.log(`${score} - winner`);
+    scoreCounter(score);
+    console.log(`${score} - score outside of forEach`) */
 }
 
 playGame();
-
 
 /* function playGame() {
 
