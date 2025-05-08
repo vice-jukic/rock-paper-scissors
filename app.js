@@ -4,12 +4,12 @@ const gameDisplay = document.querySelector(".game-display");
 
 const scoreEl = document.createElement("p");
 const resultEl = document.createElement("p");
-const humanChoiceEl = document.createElement("p");
+const userChoiceEl = document.createElement("p");
 const computerChoiceEl = document.createElement("p");
 
 appendElements();
 
-let humanScore = 0;
+let userScore = 0;
 let computerScore = 0;
 
 const WINNING_SCORE = 5;
@@ -19,9 +19,15 @@ updateScoreDisplay();
 
 function appendElements() {
 
+    scoreEl.classList.add("score");
+    resultEl.classList.add("result");
+    userChoiceEl.classList.add("user-choice");
+    computerChoiceEl.classList.add("computer-choice");
+
+
     gameDisplay.appendChild(scoreEl);
     gameDisplay.appendChild(resultEl);
-    gameDisplay.appendChild(humanChoiceEl);
+    gameDisplay.appendChild(userChoiceEl);
     gameDisplay.appendChild(computerChoiceEl);
 
 }
@@ -32,30 +38,29 @@ function getComputerChoice() {
     return element;
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound(userChoice, computerChoice) {
     let roundWinner = "";
-    console.log(humanChoice, computerChoice);
 
-    if (humanChoice === computerChoice) {
+    if (userChoice === computerChoice) {
         roundWinner = "tie";
     } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "scissors" && computerChoice === "paper") ||
-        (humanChoice === "paper" && computerChoice === "rock")
+        (userChoice === "rock" && computerChoice === "scissors") ||
+        (userChoice === "scissors" && computerChoice === "paper") ||
+        (userChoice === "paper" && computerChoice === "rock")
     ) {
-        roundWinner = "human";
+        roundWinner = "user";
     } else {
         roundWinner = "computer";
     }
 
-    humanChoiceEl.textContent = `You chose: ${humanChoice}`;
+    userChoiceEl.textContent = `You chose: ${userChoice}`;
     computerChoiceEl.textContent = `Computer chose: ${computerChoice}`;
 
     return roundWinner;
 }
 
 function updateScoreDisplay() {
-    scoreEl.textContent = `HUMAN SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore}`;
+    scoreEl.textContent = `YOUR SCORE: ${userScore} | COMPUTER SCORE: ${computerScore}`;
 }
 
 function resetGame() {
@@ -69,7 +74,7 @@ function resetGame() {
     gameDisplay.appendChild(resetButtonEl);
 
     resetButtonEl.addEventListener("click", () => {
-        humanScore = 0;
+        userScore = 0;
         computerScore = 0;
 
         while (gameDisplay.firstChild) {
@@ -78,9 +83,9 @@ function resetGame() {
 
         rpsButtons.forEach(button => button.disabled = false);
 
-        scoreEl.textContent = `HUMAN SCORE: ${humanScore} | COMPUTER SCORE: ${computerScore}`;
+        scoreEl.textContent = `YOUR SCORE: ${userScore} | COMPUTER SCORE: ${computerScore}`;
         resultEl.textContent = "";
-        humanChoiceEl.textContent = "";
+        userChoiceEl.textContent = "";
         computerChoiceEl.textContent = "";
 
         appendElements();
@@ -90,8 +95,8 @@ function resetGame() {
 
 function displayScore(winner) {
 
-    if (winner === "human") {
-        humanScore++;
+    if (winner === "user") {
+        userScore++;
         resultEl.textContent = "You win this round!";
     } else if (winner === "computer") {
         computerScore++;
@@ -102,7 +107,7 @@ function displayScore(winner) {
 
     updateScoreDisplay();
 
-    if (humanScore === WINNING_SCORE) {
+    if (userScore === WINNING_SCORE) {
         resultEl.textContent = "YOU WIN!";
         resetGame();
     } else if (computerScore === WINNING_SCORE) {

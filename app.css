@@ -1,0 +1,65 @@
+body {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 801;
+    font-style: normal;
+    color: #d3472b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #1f1b29;
+}
+
+.main-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    width: 500px;
+}
+
+.game-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-display button {
+    margin: 30px;
+}
+
+.result {
+    color: #1988c0;
+}
+
+button {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 801;
+    font-style: normal;
+    background: none;
+    color: #2d8222;
+    border: 2px solid;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: all 0.25s;
+    width: 150px;
+    border-radius: 15px;
+}
+
+button:hover{
+    background-color: #184312;
+    border-color: #5aff45;
+    color: #ffffff;
+    box-shadow: 0 0.5em 0.5em -0.4em;
+    transform: translateY(-0.2em);
+    cursor: pointer;
+}
+
+footer {
+    color: #2d8222;
+    padding: 1em;
+}
